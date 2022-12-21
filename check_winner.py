@@ -2,8 +2,12 @@ from pokereval.hand_evaluator import HandEvaluator
 
 def whoiswin(board, player_list):
     scores = []
-
+    last_player = []
     for i in player_list:
+        if i.state==1:
+            last_player.append(i)
+
+    for i in last_player:
         score = HandEvaluator.evaluate_hand(i.hand, board)
         scores.append([score, i.hand, i.name])
         scores.sort(reverse=True, key=lambda x: x[0])
